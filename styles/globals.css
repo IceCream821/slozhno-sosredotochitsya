@@ -40,3 +40,10 @@ a {
   font-size: inherit;
   line-height: inherit;
 }
+
+/* Защита от горизонтального скролла */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}

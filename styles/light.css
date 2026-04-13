@@ -1,12 +1,146 @@
 /*
   Специально для светлой темы при наличии класса.
-  Здесь окажутся стили, которые нужно переопределить принудительно,
-  переключая тему
+  Переопределяем переменные для светлой темы.
 */
 
-.page.theme_light {
-  /* сохраните этот селектор в приведённом виде.
-    Так стили написанные ниже будут иметь больший вес,
-    чем стили в медиазапросе предпочтений пользователя
-  */
+body.page.theme_light {
+  /* ═══════════════════════════════════════════════════════════
+     ЦВЕТА — СВЕТЛАЯ ТЕМА
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Фоны */
+  --bg-color: #ffffff;
+  --bg-secondary: #f0f0f0;
+  --bg-accent: #ff8dcb;
+
+  /* Текст */
+  --text-color: #1a1a1a;
+  --text-secondary: #666666;
+  --text-accent: #ff8dcb;
+
+  /* Декор */
+  --decor-color: #ff8dcb;
+  --decor-bg: #f0f0f0;
+  --corner-color: #ff8dcb;
+
+  /* Тень для заголовка */
+  --title-shadow: 4px 4px 0 var(--bg-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   СТИЛИ ДЛЯ СВЕТЛОЙ ТЕМЫ (специфичные)
+   ═══════════════════════════════════════════════════════════ */
+
+/* REC-индикатор — СКРЫТ в светлой теме  */
+body.page.theme_light .header__rec {
+  display: none;
+}
+
+.theme-light body {
+  background-image: url("../images/cover-image-light.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: var(--bg-color);
+}
+
+/* Ссылки — тень как у заголовка */
+body.page.theme_light .section__link {
+  text-shadow: 2px 2px 0 var(--bg-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ПОДДЕРЖКА СИСТЕМНОЙ СВЕТЛОЙ ТЕМЫ (auto)
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: light) {
+  :root:not(.theme_dark):not(.theme_light) {
+    /* Фоны */
+    --bg-color: #ffffff;
+    --bg-secondary: #f0f0f0;
+    --bg-accent: #ff8dcb;
+
+    /* Текст */
+    --text-color: #1a1a1a;
+    --text-secondary: #666666;
+    --text-accent: #ff8dcb;
+
+    /* Декор */
+    --decor-color: #ff8dcb;
+    --decor-bg: #f0f0f0;
+    --corner-color: #ff8dcb;
+
+    /* Тень */
+    --title-shadow: 4px 4px 0 var(--bg-accent);
+  }
+
+  /* REC скрыт в авто-режиме со светлой темой */
+  :root:not(.theme_dark):not(.theme_light) .header__rec {
+    display: none;
+  }
+
+  /* Фон страницы */
+  :root:not(.theme_dark):not(.theme_light) .page {
+    background-image: url("../images/cover-image-light.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #ffffff;
+  }
+}
+/* ═══════════════════════════════════════════════════════════
+   КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМ — СВЕТЛАЯ ТЕМА
+   ═══════════════════════════════════════════════════════════ */
+
+body.page.theme_light .header__theme-menu-button {
+  background: transparent;
+  border: 1px solid var(--text-color);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+body.page.theme_light .header__theme-menu-button:hover:not(:disabled) {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+body.page.theme_light .header__theme-menu-button_active,
+body.page.theme_light .header__theme-menu-button:disabled {
+  background: var(--text-color);
+  color: var(--bg-color);
+  cursor: default;
+  pointer-events: none;
+}
+
+body.page.theme_light .header__theme-menu-button:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ФИКС КНОПОК — СВЕТЛАЯ ТЕМА
+   ═══════════════════════════════════════════════════════════ */
+
+/* Кнопка 'День' (активная в светлой теме) */
+body.page.theme_light .header__theme-menu-button_type_light {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* Кнопки 'Авто' и 'Неон' (неактивные в светлой теме) */
+body.page.theme_light .header__theme-menu-button_type_auto,
+body.page.theme_light .header__theme-menu-button_type_dark {
+  border-color: #666666 !important;
+  color: #666666 !important;
+}
+
+/* Ховер для неактивных кнопок */
+body.page.theme_light .header__theme-menu-button_type_auto:hover:not(:disabled),
+body.page.theme_light
+  .header__theme-menu-button_type_dark:hover:not(:disabled) {
+  background: #666666 !important;
+  color: #ffffff !important;
 }

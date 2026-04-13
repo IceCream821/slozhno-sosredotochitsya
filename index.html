@@ -1,18 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 🔹 Мета-тег для цветовых схем (тёмная — основная) -->
+    <meta name="color-scheme" content="dark light" />
+
     <title>Сложно сосредоточиться</title>
+
+    <!-- 🔹 Фавиконки -->
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" />
+
+    <!-- 🔹 Подключение стилей в ПРАВИЛЬНОМ ПОРЯДКЕ -->
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/dark.css" />
+    <link rel="stylesheet" href="./styles/light.css" />
   </head>
+
   <body class="page">
+    <!-- 🔹 ШАПКА (не меняем кнопки тем!) -->
     <header class="header decorated-zone">
       <nav class="header__theme-menu">
         <ul class="header__theme-menu-list">
           <li class="header__theme-menu-item">
             <button
               class="header__theme-menu-button header__theme-menu-button_type_light"
+              type="button"
             >
               День
             </button>
@@ -21,6 +40,7 @@
             <button
               class="header__theme-menu-button header__theme-menu-button_active header__theme-menu-button_type_auto"
               disabled
+              type="button"
             >
               Авто
             </button>
@@ -28,13 +48,148 @@
           <li class="header__theme-menu-item">
             <button
               class="header__theme-menu-button header__theme-menu-button_type_dark"
+              type="button"
             >
               Неон
             </button>
           </li>
         </ul>
       </nav>
+
+      <!-- 🔹 Декоративный REC (скрывается в светлой теме через CSS) -->
+      <span class="header__rec" aria-hidden="true"></span>
+
+      <!-- 🔹 Заголовок страницы (единственный h1) -->
+      <h1 class="header__title">
+        <span class="title-decor">Сложно</span>
+        <span class="title-decor">сосредоточиться</span>
+      </h1>
+
+      <!-- 🔹 Декоративные уголки -->
+      <span
+        class="decor-corner decor-corner--top-right"
+        aria-hidden="true"
+      ></span>
+      <span
+        class="decor-corner decor-corner--bottom-left"
+        aria-hidden="true"
+      ></span>
     </header>
+
+    <!-- 🔹 ОСНОВНОЙ КОНТЕНТ -->
+    <main class="page__main">
+      <!-- Секция 1: Введение -->
+      <section class="section section_intro">
+        <h2 class="section__title title-decor">О проекте</h2>
+        <p class="section__text">
+          Этот сайт — эксперимент с восприятием.
+          <a href="#" class="section__link">Попробуйте переключить тему</a>
+          и заметьте, как меняется фокус внимания.
+        </p>
+      </section>
+
+      <!-- Секция 2: Контент с изображениями -->
+      <section class="section section_content">
+        <h2 class="section__title">Галерея отвлечений</h2>
+
+        <!-- 🔹 Грид-галерея с ленивой загрузкой -->
+        <div class="gallery">
+          <article class="gallery__item">
+            <img
+              class="gallery__image"
+              src="./images/books.png"
+              alt="Стопка книг на деревянной поверхности"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+            <p class="gallery__caption">Книги ждут своего часа</p>
+          </article>
+
+          <article class="gallery__item">
+            <img
+              class="gallery__image"
+              src="./images/ice-cream.png"
+              alt="Мороженое в вафельном стаканчике"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+            <p class="gallery__caption">Сладкое искушение</p>
+          </article>
+
+          <article class="gallery__item">
+            <img
+              class="gallery__image"
+              src="./images/street.png"
+              alt="Городская улица в сумерках"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+            <p class="gallery__caption">Прогулка вместо работы</p>
+          </article>
+
+          <article class="gallery__item">
+            <img
+              class="gallery__image"
+              src="./images/sunset.png"
+              alt="Закат над горизонтом"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+            <p class="gallery__caption">Момент для созерцания</p>
+          </article>
+
+          <article class="gallery__item">
+            <img
+              class="gallery__image"
+              src="./images/tape.png"
+              alt="Кассетная лента распуталась"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+            <p class="gallery__caption">Ностальгия по аналогу</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Секция 3: Дополнительный текст -->
+      <section class="section section_extra">
+        <h2 class="section__title title-decor">Почему это важно</h2>
+        <p class="section__text">
+          Внимание — ресурс.
+          <span class="title-decor">Защищайте его</span>
+          от визуального шума.
+        </p>
+      </section>
+    </main>
+
+    <!-- 🔹 ФУТЕР (повторяет стили шапки, но без h1) -->
+    <footer class="footer decorated-zone">
+      <h2 class="footer__title">
+        <span class="title-decor">Сложно</span>
+        <span class="title-decor">сосредоточиться</span>
+      </h2>
+
+      <!-- 🔹 Декоративные уголки (переиспользуем классы) -->
+      <span
+        class="decor-corner decor-corner--top-right"
+        aria-hidden="true"
+      ></span>
+      <span
+        class="decor-corner decor-corner--bottom-left"
+        aria-hidden="true"
+      ></span>
+
+      <p class="footer__copyright" aria-hidden="true">
+        © 2026 Проектная работа Яндекс Практикум
+      </p>
+    </footer>
+
+    <!-- 🔹 Скрипт переключения тем (НЕ ТРОГАЕМ!) -->
     <script src="./scripts/script.js"></script>
   </body>
 </html>
