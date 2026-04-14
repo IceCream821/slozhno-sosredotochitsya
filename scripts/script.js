@@ -1,48 +1,64 @@
-const themeButtons = document.querySelectorAll(".header__theme-menu-button");
+(function () {
+  "use strict";
 
-themeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    themeButtons.forEach((btn) => {
-      btn.classList.remove("header__theme-menu-button_active");
-      btn.removeAttribute("disabled");
+  const themeButtons = document.querySelectorAll(".header__theme-menu-button");
+  const htmlElement = document.documentElement;
+
+  const updateActiveButton = (activeTheme) => {
+    themeButtons.forEach((button) => {
+      const buttonTheme = button.dataset.theme;
+
+      if (buttonTheme === activeTheme) {
+        button.classList.add("header__theme-menu-button_active");
+        button.setAttribute("aria-pressed", "true");
+        button.disabled = true;
+      } else {
+        button.classList.remove("header__theme-menu-button_active");
+        button.setAttribute("aria-pressed", "false");
+        button.disabled = false;
+      }
     });
-    if (
-      [...button.classList].includes("header__theme-menu-button_type_light")
-    ) {
-      changeTheme("light");
-    } else if (
-      [...button.classList].includes("header__theme-menu-button_type_dark")
-    ) {
-      changeTheme("dark");
-    } else {
-      changeTheme("auto");
+  };
+
+  const setTheme = (theme) => {
+    // Удаляем все классы тем
+    htmlElement.classList.remove("theme-dark", "theme-light", "theme-auto");
+
+    if (theme === "dark" || theme === "light") {
+      htmlElement.classList.add(`theme-${theme}`);
+      localStorage.setItem("theme", theme);
+      updateActiveButton(theme);
+    } else if (theme === "auto") {
+      htmlElement.classList.add("theme-auto");
+      localStorage.setItem("theme", "auto");
+      updateActiveButton("auto");
+
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (prefersDark) {
+        htmlElement.classList.add("theme-dark");
+      } else {
+        htmlElement.classList.add("theme-light");
+      }
     }
-    button.classList.add("header__theme-menu-button_active");
-    button.setAttribute("disabled", true);
-  });
-});
+  };
 
-function changeTheme(theme) {
-  document.body.className = "page";
-  document.body.classList.add(`theme_${theme}`);
-  localStorage.setItem("theme", theme);
-}
-
-function initTheme() {
-  const theme = localStorage.getItem("theme");
-  if (theme) {
-    changeTheme(theme);
-    themeButtons.forEach((btn) => {
-      btn.classList.remove("header__theme-menu-button_active");
-      btn.removeAttribute("disabled");
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const theme = button.dataset.theme;
+      setTheme(theme);
     });
-    document
-      .querySelector(`.header__theme-menu-button_type_${theme}`)
-      .classList.add("header__theme-menu-button_active");
-    document
-      .querySelector(`.header__theme-menu-button_type_${theme}`)
-      .setAttribute("disabled", true);
-  }
-}
+  });
 
-initTheme();
+  const initTheme = () => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme);
+  } else {
+    initTheme();
+  }
+})();

@@ -8,12 +8,14 @@
    БАЗОВЫЕ СТИЛИ СТРАНИЦЫ
    ═══════════════════════════════════════════════════════════ */
 
+/* Фон задаётся на body, а не на .page! */
 body {
   background-color: var(--bg-color);
-  background-image: url('../images/cover-image-dark.png');
+  background-image: url("../images/cover-image-dark.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
 
 .page {
@@ -32,6 +34,42 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   ДЕКОРАТИВНЫЕ УГОЛКИ (псевдоэлементы)
+   ═══════════════════════════════════════════════════════════ */
+
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before {
+  /* Верхний правый угол */
+  content: "";
+  position: absolute;
+  top: var(--section-padding-inline);
+  right: var(--section-padding-inline);
+  width: var(--corner-size);
+  height: var(--corner-size);
+  border: var(--corner-width) solid var(--corner-color);
+  border-left: none;
+  border-bottom: none;
+  pointer-events: none;
+}
+
+.decorated-zone::after {
+  /* Нижний левый угол */
+  content: "";
+  position: absolute;
+  bottom: var(--section-padding-inline);
+  left: var(--section-padding-inline);
+  width: var(--corner-size);
+  height: var(--corner-size);
+  border: var(--corner-width) solid var(--corner-color);
+  border-right: none;
+  border-top: none;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
    ШАПКА (HEADER)
    ═══════════════════════════════════════════════════════════ */
 
@@ -41,7 +79,7 @@ body {
   grid-template-rows: auto auto 1fr;
   align-items: center;
   justify-items: center;
-  min-height: 100vh;
+  min-height: 100vh; /* ✅ Обязательно! */
   padding-inline: var(--section-padding-inline);
   padding-block: var(--section-padding-block);
   position: relative;
@@ -82,6 +120,7 @@ body {
   background: var(--text-color);
   color: var(--bg-color);
   cursor: default;
+  pointer-events: none;
 }
 
 /* Заголовок H1 */
@@ -138,34 +177,8 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ
+   ДЕКОРАТИВНЫЙ ФОН ДЛЯ ТЕКСТА
    ═══════════════════════════════════════════════════════════ */
-
-.decorated-zone {
-  position: relative;
-}
-
-.decor-corner {
-  position: absolute;
-  width: var(--corner-size);
-  height: var(--corner-size);
-  border: var(--corner-width) solid var(--corner-color);
-  pointer-events: none;
-}
-
-.decor-corner--top-right {
-  top: var(--section-padding-inline);
-  right: var(--section-padding-inline);
-  border-left: none;
-  border-bottom: none;
-}
-
-.decor-corner--bottom-left {
-  bottom: var(--section-padding-inline);
-  left: var(--section-padding-inline);
-  border-right: none;
-  border-top: none;
-}
 
 .title-decor {
   background: var(--decor-bg);
@@ -202,10 +215,21 @@ body {
   margin-block-end: var(--gap-medium);
 }
 
+.section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section__list-item {
+  margin-block-end: var(--gap-small);
+}
+
 .section__link {
   color: var(--text-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
+  text-shadow: 2px 2px 0 var(--accent-color);
 }
 
 .section__link:hover {
@@ -248,36 +272,29 @@ body {
    ═══════════════════════════════════════════════════════════ */
 
 .footer {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: auto auto;
+  display: flex; /* ✅ Flex для центрирования */
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+  min-height: 100vh; /* ✅ Обязательно! */
   padding-inline: var(--section-padding-inline);
   padding-block: var(--section-padding-block);
   position: relative;
   gap: var(--gap-medium);
-  min-height: 50vh;
+  text-align: center;
 }
 
 .footer__title {
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  justify-self: center;
-  text-align: center;
   font-size: var(--h2-size);
   font-weight: var(--font-weight-bold);
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: var(--gap-small);
-  /* БЕЗ text-shadow в футере! */
+  /* ✅ БЕЗ text-shadow в футере! */
 }
 
 .footer__copyright {
-  grid-column: 1 / -1;
-  grid-row: 2 / 3;
-  justify-self: center;
   font-size: var(--copyright-size);
   color: var(--text-secondary);
   margin: 0;
@@ -309,18 +326,13 @@ body {
   }
 
   .footer {
-    grid-template-columns: auto 1fr auto;
+    flex-direction: column;
   }
 }
 
 /* ═══════════════════════════════════════════════════════════
    ДОСТУПНОСТЬ
    ═══════════════════════════════════════════════════════════ */
-
-/* Убираем горизонтальный скролл */
-body {
-  overflow-x: hidden;
-}
 
 /* Фокус для клавиатуры */
 :focus-visible {

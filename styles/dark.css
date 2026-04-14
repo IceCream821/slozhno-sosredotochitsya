@@ -1,14 +1,9 @@
-/*
-  Специально для тёмной темы при наличии класса.
-  Дублируем переменные для принудительного переключения.
-*/
+/* ═══════════════════════════════════════════════════════════
+   ПЕРЕМЕННЫЕ ТЁМНОЙ ТЕМЫ (для принудительного переключения)
+   ═══════════════════════════════════════════════════════════ */
 
-body.page.theme_dark {
-  /* ═══════════════════════════════════════════════════════════
-     ЦВЕТА — ТЁМНАЯ ТЕМА
-     ═══════════════════════════════════════════════════════════ */
-
-  /* Фоны */
+:root.theme-dark {
+  /* Цвета */
   --bg-color: #1a1a1a;
   --bg-secondary: #2d2d2d;
   --bg-accent: #ff0070;
@@ -19,73 +14,29 @@ body.page.theme_dark {
   --text-accent: #ff0070;
 
   /* Декор */
-  --decor-color: #ff0070;
   --decor-bg: #2d2d2d;
+  --decor-color: #ff0070;
   --corner-color: #ff0070;
 
-  /* Тень для заголовка */
+  /* Тень */
   --title-shadow: 4px 4px 0 var(--bg-accent);
 }
 
 /* ═══════════════════════════════════════════════════════════
-   СТИЛИ ДЛЯ ТЁМНОЙ ТЕМЫ (специфичные)
+   REC ИНДИКАТОР (виден только в тёмной теме)
    ═══════════════════════════════════════════════════════════ */
 
-/* REC-индикатор — виден только в тёмной теме */
-body.page.theme_dark .header__rec {
+:root.theme-dark .header__rec {
   display: block;
 }
 
-body.page.theme_dark .header__rec::after {
-  content: "REC";
-  display: inline-block;
-  font-size: var(--caption-size);
-  font-weight: var(--font-weight-bold);
-  color: var(--decor-color);
-}
-
-body.page.theme_dark .header__rec::before {
-  content: "";
-  display: inline-block;
-  width: var(--rec-size);
-  height: var(--rec-size);
-  background: var(--decor-color);
-  border-radius: 50%;
-  margin-right: var(--gap-small);
-  animation: blink 1.5s infinite;
-}
-
-.theme-dark body {
-  background-image: url("../images/cover-image-dark.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: var(--bg-color);
-}
-
-/* Ссылки — тень как у заголовка */
-body.page.theme_dark .section__link {
-  text-shadow: 2px 2px 0 var(--bg-accent);
-}
-
-/* Анимация мигания REC */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
 /* ═══════════════════════════════════════════════════════════
-   ПОДДЕРЖКА СИСТЕМНОЙ ТЁМНОЙ ТЕМЫ (auto)
+   АВТО-ТЕМА 
    ═══════════════════════════════════════════════════════════ */
 
 @media (prefers-color-scheme: dark) {
-  :root:not(.theme_dark):not(.theme_light) {
-    /* Фоны */
+  :root:not(.theme-dark):not(.theme-light) {
+    /* Цвета */
     --bg-color: #1a1a1a;
     --bg-secondary: #2d2d2d;
     --bg-accent: #ff0070;
@@ -96,56 +47,15 @@ body.page.theme_dark .section__link {
     --text-accent: #ff0070;
 
     /* Декор */
-    --decor-color: #ff0070;
     --decor-bg: #2d2d2d;
+    --decor-color: #ff0070;
     --corner-color: #ff0070;
 
     /* Тень */
     --title-shadow: 4px 4px 0 var(--bg-accent);
   }
 
-  /* REC виден в авто-режиме с тёмной темой */
-  :root:not(.theme_dark):not(.theme_light) .header__rec {
+  :root:not(.theme-dark):not(.theme-light) .header__rec {
     display: block;
   }
-
-  /* Фон страницы */
-  :root:not(.theme_dark):not(.theme_light) .page {
-    background-image: url("../images/cover-image-dark.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-color: #1a1a1a;
-  }
-}
-/* ═══════════════════════════════════════════════════════════
-   КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМ — ТЁМНАЯ ТЕМА
-   ═══════════════════════════════════════════════════════════ */
-
-body.page.theme_dark .header__theme-menu-button {
-  background: transparent;
-  border: 1px solid var(--text-color);
-  border-radius: var(--button-border-radius);
-  padding: var(--button-padding);
-  color: var(--text-color);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-body.page.theme_dark .header__theme-menu-button:hover:not(:disabled) {
-  background: var(--text-color);
-  color: var(--bg-color);
-}
-
-body.page.theme_dark .header__theme-menu-button_active,
-body.page.theme_dark .header__theme-menu-button:disabled {
-  background: var(--text-color);
-  color: var(--bg-color);
-  cursor: default;
-  pointer-events: none;
-}
-
-body.page.theme_dark .header__theme-menu-button:focus-visible {
-  outline: 2px solid var(--text-accent);
-  outline-offset: 2px;
 }

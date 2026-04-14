@@ -1,20 +1,22 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="page">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- 🔹 Мета-тег для цветовых схем (тёмная — основная) -->
     <meta name="color-scheme" content="dark light" />
+    <meta
+      name="description"
+      content="Проектная работа Яндекс Практикум — Сложно сосредоточиться"
+    />
 
     <title>Сложно сосредоточиться</title>
 
-    <!-- 🔹 Фавиконки -->
+    <!-- Фавиконки -->
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" />
 
-    <!-- 🔹 Подключение стилей в ПРАВИЛЬНОМ ПОРЯДКЕ -->
+    <!-- Подключение стилей (правильный порядок!) -->
     <link rel="stylesheet" href="./fonts/fonts.css" />
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/globals.css" />
@@ -23,173 +25,246 @@
     <link rel="stylesheet" href="./styles/light.css" />
   </head>
 
-  <body class="page">
-    <!-- 🔹 ШАПКА (не меняем кнопки тем!) -->
-    <header class="header decorated-zone">
-      <nav class="header__theme-menu">
-        <ul class="header__theme-menu-list">
-          <li class="header__theme-menu-item">
-            <button
-              class="header__theme-menu-button header__theme-menu-button_type_light"
-              type="button"
-            >
-              День
-            </button>
-          </li>
-          <li class="header__theme-menu-item">
-            <button
-              class="header__theme-menu-button header__theme-menu-button_active header__theme-menu-button_type_auto"
-              disabled
-              type="button"
-            >
-              Авто
-            </button>
-          </li>
-          <li class="header__theme-menu-item">
-            <button
-              class="header__theme-menu-button header__theme-menu-button_type_dark"
-              type="button"
-            >
-              Неон
-            </button>
-          </li>
-        </ul>
-      </nav>
+  <body class="page__body">
+    <div class="page__content">
+      <!-- ═══════════════════════════════════════════════════════════
+           ШАПКА (HEADER)
+           ═══════════════════════════════════════════════════════════ -->
+      <header class="header decorated-zone">
+        <!-- Меню переключения тем (НЕ МЕНЯТЬ!) -->
+        <nav class="header__theme-menu" aria-label="Переключение темы">
+          <ul class="header__theme-menu-list">
+            <li class="header__theme-menu-item">
+              <button
+                type="button"
+                class="header__theme-menu-button header__theme-menu-button_active"
+                data-theme="dark"
+                aria-pressed="true"
+              >
+                Неон
+              </button>
+            </li>
+            <li class="header__theme-menu-item">
+              <button
+                type="button"
+                class="header__theme-menu-button"
+                data-theme="auto"
+                aria-pressed="false"
+              >
+                Авто
+              </button>
+            </li>
+            <li class="header__theme-menu-item">
+              <button
+                type="button"
+                class="header__theme-menu-button"
+                data-theme="light"
+                aria-pressed="false"
+              >
+                День
+              </button>
+            </li>
+          </ul>
+        </nav>
 
-      <!-- 🔹 Декоративный REC (скрывается в светлой теме через CSS) -->
-      <span class="header__rec" aria-hidden="true"></span>
+        <!-- Заголовок H1 (единственный на странице!) -->
+        <h1 class="header__title">
+          <span class="title-decor">Сложно</span>
+          <span class="title-decor">сосредоточиться</span>
+        </h1>
 
-      <!-- 🔹 Заголовок страницы (единственный h1) -->
-      <h1 class="header__title">
-        <span class="title-decor">Сложно</span>
-        <span class="title-decor">сосредоточиться</span>
-      </h1>
+        <!-- REC индикатор (виден только в тёмной теме) -->
+        <div class="header__rec" aria-hidden="true"></div>
 
-      <!-- 🔹 Декоративные уголки -->
-      <span
-        class="decor-corner decor-corner--top-right"
-        aria-hidden="true"
-      ></span>
-      <span
-        class="decor-corner decor-corner--bottom-left"
-        aria-hidden="true"
-      ></span>
-    </header>
+        <!-- Декоративные уголки — через псевдоэлементы в CSS -->
+      </header>
 
-    <!-- 🔹 ОСНОВНОЙ КОНТЕНТ -->
-    <main class="page__main">
-      <!-- Секция 1: Введение -->
-      <section class="section section_intro">
-        <h2 class="section__title title-decor">О проекте</h2>
-        <p class="section__text">
-          Этот сайт — эксперимент с восприятием.
-          <a href="#" class="section__link">Попробуйте переключить тему</a>
-          и заметьте, как меняется фокус внимания.
+      <!-- ═══════════════════════════════════════════════════════════
+           ОСНОВНОЙ КОНТЕНТ (MAIN)
+           ═══════════════════════════════════════════════════════════ -->
+      <main class="page__main">
+        <!-- Секция 1: Почему сосредоточиться так сложно -->
+        <section
+          class="section section--intro"
+          aria-labelledby="section-intro-title"
+        >
+          <h2 id="section-intro-title" class="section__title title-decor">
+            Почему сосредоточиться так сложно
+          </h2>
+          <p class="section__text">
+            В современном мире нас окружает множество отвлекающих факторов.
+            Социальные сети, уведомления, бесконечный поток информации — всё это
+            мешает нам сосредоточиться на важных задачах.
+          </p>
+          <p class="section__text">
+            Исследования показывают, что среднее время концентрации внимания
+            сократилось с 12 минут в 2004 году до менее чем 5 минут в 2024.
+          </p>
+        </section>
+
+        <!-- Секция 2: Что снижает концентрацию внимания -->
+        <section
+          class="section section--concentration"
+          aria-labelledby="section-concentration-title"
+        >
+          <h2
+            id="section-concentration-title"
+            class="section__title title-decor"
+          >
+            Что снижает концентрацию внимания?
+          </h2>
+          <p class="section__text">Основные враги фокуса:</p>
+          <ul class="section__list">
+            <li class="section__list-item">
+              Многозадачность и переключение между задачами
+            </li>
+            <li class="section__list-item">
+              Постоянные уведомления от приложений
+            </li>
+            <li class="section__list-item">
+              Недостаток сна и неправильное питание
+            </li>
+            <li class="section__list-item">Стресс и тревожность</li>
+            <li class="section__list-item">
+              <a
+                href="https://www.notion.so"
+                class="section__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Цифровой шум
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Секция 3: Как концентрироваться лучше -->
+        <section
+          class="section section--tips"
+          aria-labelledby="section-tips-title"
+        >
+          <h2 id="section-tips-title" class="section__title title-decor">
+            Как концентрироваться лучше
+          </h2>
+          <p class="section__text">
+            Несколько проверенных техник для улучшения фокуса:
+          </p>
+          <ul class="section__list">
+            <li class="section__list-item">
+              <span class="title-decor">Метод Помодоро</span> — 25 минут работы,
+              5 минут отдыха
+            </li>
+            <li class="section__list-item">
+              <span class="title-decor">Глубокая работа</span> — блокируйте
+              время для важных задач
+            </li>
+            <li class="section__list-item">
+              <span class="title-decor">Цифровой детокс</span> — отключайте
+              уведомления во время работы
+            </li>
+            <li class="section__list-item">
+              <span class="title-decor">Медитация</span> — тренируйте внимание
+              осознанно
+            </li>
+          </ul>
+        </section>
+
+        <!-- Секция 4: Галерея (а можно в картинках?) -->
+        <section
+          class="section section--gallery"
+          aria-labelledby="section-gallery-title"
+        >
+          <h2 id="section-gallery-title" class="section__title title-decor">
+            А можно в картинках?
+          </h2>
+          <p class="section__text">
+            Иногда лучше один раз увидеть, чем сто раз услышать. Вот несколько
+            образов, которые помогут настроиться на работу:
+          </p>
+
+          <div class="gallery">
+            <article class="gallery__item">
+              <img
+                class="gallery__image"
+                src="./images/books.png"
+                alt="Стопка книг на деревянной поверхности"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <p class="gallery__caption">Знания — сила</p>
+            </article>
+
+            <article class="gallery__item">
+              <img
+                class="gallery__image"
+                src="./images/ice-cream.png"
+                alt="Мороженое в вафельном стаканчике"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <p class="gallery__caption">Время для перерыва</p>
+            </article>
+
+            <article class="gallery__item">
+              <img
+                class="gallery__image"
+                src="./images/street.png"
+                alt="Городская улица в сумерках"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <p class="gallery__caption">Городской ритм</p>
+            </article>
+
+            <article class="gallery__item">
+              <img
+                class="gallery__image"
+                src="./images/sunset.png"
+                alt="Закат над горизонтом"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <p class="gallery__caption">Время подведения итогов</p>
+            </article>
+
+            <article class="gallery__item">
+              <img
+                class="gallery__image"
+                src="./images/tape.png"
+                alt="Кассетная лента распуталась"
+                loading="lazy"
+                width="400"
+                height="300"
+              />
+              <p class="gallery__caption">Иногда всё идёт не по плану</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           ФУТЕР (FOOTER)
+           ═══════════════════════════════════════════════════════════ -->
+      <footer class="footer decorated-zone" aria-labelledby="footer-title">
+        <!-- Заголовок H2 (не H1! H1 только в шапке) -->
+        <h2 id="footer-title" class="footer__title">
+          <span class="title-decor">Сложно</span>
+          <span class="title-decor">сосредоточиться</span>
+        </h2>
+
+        <p class="footer__copyright">
+          © 2026 Проектная работа Яндекс Практикум
         </p>
-      </section>
 
-      <!-- Секция 2: Контент с изображениями -->
-      <section class="section section_content">
-        <h2 class="section__title">Галерея отвлечений</h2>
+        <!-- Декоративные уголки — через псевдоэлементы в CSS -->
+      </footer>
+    </div>
 
-        <!-- 🔹 Грид-галерея с ленивой загрузкой -->
-        <div class="gallery">
-          <article class="gallery__item">
-            <img
-              class="gallery__image"
-              src="./images/books.png"
-              alt="Стопка книг на деревянной поверхности"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-            <p class="gallery__caption">Книги ждут своего часа</p>
-          </article>
-
-          <article class="gallery__item">
-            <img
-              class="gallery__image"
-              src="./images/ice-cream.png"
-              alt="Мороженое в вафельном стаканчике"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-            <p class="gallery__caption">Сладкое искушение</p>
-          </article>
-
-          <article class="gallery__item">
-            <img
-              class="gallery__image"
-              src="./images/street.png"
-              alt="Городская улица в сумерках"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-            <p class="gallery__caption">Прогулка вместо работы</p>
-          </article>
-
-          <article class="gallery__item">
-            <img
-              class="gallery__image"
-              src="./images/sunset.png"
-              alt="Закат над горизонтом"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-            <p class="gallery__caption">Момент для созерцания</p>
-          </article>
-
-          <article class="gallery__item">
-            <img
-              class="gallery__image"
-              src="./images/tape.png"
-              alt="Кассетная лента распуталась"
-              loading="lazy"
-              width="400"
-              height="300"
-            />
-            <p class="gallery__caption">Ностальгия по аналогу</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- Секция 3: Дополнительный текст -->
-      <section class="section section_extra">
-        <h2 class="section__title title-decor">Почему это важно</h2>
-        <p class="section__text">
-          Внимание — ресурс.
-          <span class="title-decor">Защищайте его</span>
-          от визуального шума.
-        </p>
-      </section>
-    </main>
-
-    <!-- 🔹 ФУТЕР (повторяет стили шапки, но без h1) -->
-    <footer class="footer decorated-zone">
-      <h2 class="footer__title">
-        <span class="title-decor">Сложно</span>
-        <span class="title-decor">сосредоточиться</span>
-      </h2>
-
-      <!-- 🔹 Декоративные уголки (переиспользуем классы) -->
-      <span
-        class="decor-corner decor-corner--top-right"
-        aria-hidden="true"
-      ></span>
-      <span
-        class="decor-corner decor-corner--bottom-left"
-        aria-hidden="true"
-      ></span>
-
-      <p class="footer__copyright" aria-hidden="true">
-        © 2026 Проектная работа Яндекс Практикум
-      </p>
-    </footer>
-
-    <!-- 🔹 Скрипт переключения тем (НЕ ТРОГАЕМ!) -->
+    <!-- Скрипт переключения тем (НЕ МЕНЯТЬ!) -->
     <script src="./scripts/script.js"></script>
   </body>
 </html>
