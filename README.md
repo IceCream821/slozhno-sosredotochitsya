@@ -1,3 +1,6 @@
+https://github.com/IceCream821/slozhno-sosredotochitsya
+
+
 ### 🎨 Цветовые схемы
 
 #### Тёмная тема (Неон) — Основная
