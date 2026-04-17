@@ -1,66 +1,27 @@
-/*
-  Стили для СВЕТЛОЙ темы
-  ТОЛЬКО переменные и REC display
-*/
-
-/* ═══════════════════════════════════════════════════════════
-   ПЕРЕМЕННЫЕ СВЕТЛОЙ ТЕМЫ (для принудительного переключения)
-   ═══════════════════════════════════════════════════════════ */
-
 :root.theme-light {
-  /* Цвета */
-  --bg-color: #ffffff;
-  --bg-secondary: #f0f0f0;
-  --bg-accent: #ff8dcb;
-
-  /* Текст */
-  --text-color: #1a1a1a;
-  --text-secondary: #666666;
-  --text-accent: #ff8dcb;
-
-  /* Декор */
-  --decor-bg: #f0f0f0;
-  --decor-color: #ff8dcb;
-  --corner-color: #ff8dcb;
-
-  /* Тень */
-  --title-shadow: 4px 4px 0 var(--bg-accent);
+  --bg-color: #FFF1F7;
+  --bg-image: url("../images/cover-image-light.png");
+  --accent-color: #FF8DCB;
+  --title-color: #FFC2E6;        /* заголовок h1 */
+  --title-shadow: #FF8DCB;
+  --text-color: #353430;
+  --decor-color: #353430;
+  --button-text: #353430;
+  --button-hover-bg: rgba(50, 49, 45, 0.4);
+  --rec-visible: none;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   REC ИНДИКАТОР (скрыт в светлой теме)
-   ═══════════════════════════════════════════════════════════ */
-
-:root.theme-light .header__rec {
-  display: none;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   АВТО-ТЕМА (светлая)
-   ═══════════════════════════════════════════════════════════ */
 
 @media (prefers-color-scheme: light) {
   :root:not(.theme-dark):not(.theme-light) {
-    /* Цвета */
-    --bg-color: #ffffff;
-    --bg-secondary: #f0f0f0;
-    --bg-accent: #ff8dcb;
-
-    /* Текст */
-    --text-color: #1a1a1a;
-    --text-secondary: #666666;
-    --text-accent: #ff8dcb;
-
-    /* Декор */
-    --decor-bg: #f0f0f0;
-    --decor-color: #ff8dcb;
-    --corner-color: #ff8dcb;
-
-    /* Тень */
-    --title-shadow: 4px 4px 0 var(--bg-accent);
-  }
-
-  :root:not(.theme-dark):not(.theme-light) .header__rec {
-    display: none;
+    --bg-color: #FFF1F7;
+    --bg-image: url("../images/cover-image-light.png");
+    --accent-color: #FF8DCB;
+    --title-color: #FFC2E6;
+    --title-shadow: #FF8DCB;
+    --text-color: #353430;
+    --decor-color: #353430;
+    --button-text: #353430;
+    --button-hover-bg: rgba(50, 49, 45, 0.4);
+    --rec-visible: none;
   }
 }

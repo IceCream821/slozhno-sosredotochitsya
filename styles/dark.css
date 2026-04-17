@@ -1,61 +1,28 @@
-/* ═══════════════════════════════════════════════════════════
-   ПЕРЕМЕННЫЕ ТЁМНОЙ ТЕМЫ (для принудительного переключения)
-   ═══════════════════════════════════════════════════════════ */
-
 :root.theme-dark {
-  /* Цвета */
-  --bg-color: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-accent: #ff0070;
-
-  /* Текст */
-  --text-color: #ffffff;
-  --text-secondary: #b3b3b3;
-  --text-accent: #ff0070;
-
-  /* Декор */
-  --decor-bg: #2d2d2d;
-  --decor-color: #ff0070;
-  --corner-color: #ff0070;
-
-  /* Тень */
-  --title-shadow: 4px 4px 0 var(--bg-accent);
+  --bg-color: #000028;
+  --bg-image: url("../images/cover-image-dark.png");
+  --accent-color: #FF0070;
+  --title-color: #DB00FF;
+  --title-shadow: #FF0070;
+  --text-color: #F1B2CE;
+  --decor-color: #FF0070;
+  --button-text: #FF0070;
+  --button-hover-bg: rgba(255, 0, 112, 0.4);
+  --rec-visible: block;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   REC ИНДИКАТОР (виден только в тёмной теме)
-   ═══════════════════════════════════════════════════════════ */
-
-:root.theme-dark .header__rec {
-  display: block;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   АВТО-ТЕМА 
-   ═══════════════════════════════════════════════════════════ */
-
+/* Для авто-темы (prefers-color-scheme: dark) */
 @media (prefers-color-scheme: dark) {
   :root:not(.theme-dark):not(.theme-light) {
-    /* Цвета */
-    --bg-color: #1a1a1a;
-    --bg-secondary: #2d2d2d;
-    --bg-accent: #ff0070;
-
-    /* Текст */
-    --text-color: #ffffff;
-    --text-secondary: #b3b3b3;
-    --text-accent: #ff0070;
-
-    /* Декор */
-    --decor-bg: #2d2d2d;
-    --decor-color: #ff0070;
-    --corner-color: #ff0070;
-
-    /* Тень */
-    --title-shadow: 4px 4px 0 var(--bg-accent);
-  }
-
-  :root:not(.theme-dark):not(.theme-light) .header__rec {
-    display: block;
+    --bg-color: #000028;
+    --bg-image: url("../images/cover-image-dark.png");
+    --accent-color: #FF0070;
+    --title-color: #DB00FF;
+    --title-shadow: #FF0070;
+    --text-color: #F1B2CE;
+    --decor-color: #FF0070;
+    --button-text: #FF0070;
+    --button-hover-bg: rgba(255, 0, 112, 0.4);
+    --rec-visible: block;
   }
 }
