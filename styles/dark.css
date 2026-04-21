@@ -1,28 +1,23 @@
-:root.theme-dark {
-  --bg-color: #000028;
-  --bg-image: url("../images/cover-image-dark.png");
-  --accent-color: #FF0070;
-  --title-color: #DB00FF;
-  --title-shadow: #FF0070;
-  --text-color: #F1B2CE;
-  --decor-color: #FF0070;
-  --button-text: #FF0070;
-  --button-hover-bg: rgba(255, 0, 112, 0.4);
-  --rec-visible: block;
+/*
+  Специально для тёмной темы при наличии класса,
+  здесь окажутся стили, которые нужно переопределить принудительно,
+  переключая тему
+*/
+
+.page.theme_dark {
+  /* сохраните этот селектор в приведённом виде.
+    Так стили написанные ниже будут иметь больший вес,
+    чем стили в медиазапросе предпочтений пользователя
+  */
+  --background-image: url("../images/cover-image-dark.png");
+  --accent-color: #ff0070;
+  --logo-color: #db00ff;
+  --accent-text-color: #f1b2ce;
+  --hover-color: rgba(255, 0, 112, 0.4);
+  --background-color: #000028;
+  --shadow-logo-color: #ff0070;
+  --shadow-link-color: #ff0070;
+  --section-title-color: #ff0070;
+  --hidden-status: visible;
 }
 
-/* Для авто-темы (prefers-color-scheme: dark) */
-@media (prefers-color-scheme: dark) {
-  :root:not(.theme-dark):not(.theme-light) {
-    --bg-color: #000028;
-    --bg-image: url("../images/cover-image-dark.png");
-    --accent-color: #FF0070;
-    --title-color: #DB00FF;
-    --title-shadow: #FF0070;
-    --text-color: #F1B2CE;
-    --decor-color: #FF0070;
-    --button-text: #FF0070;
-    --button-hover-bg: rgba(255, 0, 112, 0.4);
-    --rec-visible: block;
-  }
-}

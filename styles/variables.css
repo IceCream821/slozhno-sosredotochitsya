@@ -1,37 +1,17 @@
+/*
+  Переменные для вашего проекта
+  и их переопределение под различные устройства
+*/
 :root {
-  /* Тёмная тема (основная) */
-  --bg-color: #000028;
-  --bg-image: url("../images/cover-image-dark.png");
-  --accent-color: #FF0070;
-  --title-color: #DB00FF;
-  --title-shadow: #FF0070;
-  --text-color: #F1B2CE;
-  --decor-color: #FF0070;
-  --button-text: #FF0070;
-  --button-hover-bg: rgba(255, 0, 112, 0.4);
-  --rec-visible: flex;
-
-  /* Шрифты */
-  --font-main: "IBM Plex Mono", monospace;
-  --font-weight-normal: 400;
-  --font-weight-bold: 700;
-
-  /* Размеры текста (будут уточнены в style.css через clamp) */
-  --h1-size-mobile: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
-  --h1-size-desktop: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  --section-title-size: clamp(2rem, 1.5rem + 2vw, 2.5rem);
-  --text-size: clamp(0.875rem, 0.8rem + 0.5vw, 1rem);
-  --caption-size: 0.75rem;
-  --copyright-size: 0.625rem;
-
-  /* Отступы */
-  --page-padding: clamp(0.625rem, 0.2rem + 2vw, 1.25rem);
-  --section-gap: clamp(2.5rem, 2rem + 3vw, 5rem);
-  --card-gap: clamp(1.25rem, 1rem + 1vw, 1.875rem);
-
-  /* Декоративные элементы */
-  --corner-size: 1.5625rem;
-  --corner-width: 0.125rem;
-  --rec-size: 0.3125rem;
-  --button-padding: 0.5rem 0.8125rem;
+  --background-image: url("../images/cover-image-dark.png");
+  --accent-color: #ff0070;
+  --offset: 10px;
+  --logo-color: #db00ff;
+  --accent-text-color: #f1b2ce;
+  --hover-color: rgba(255, 0, 112, 0.4);
+  --background-color: #000028;
+  --shadow-logo-color: #ff0070;
+  --shadow-link-color: #ff0070;
+  --section-title-color: #ff0070;
+  --hidden-status: visible;
 }

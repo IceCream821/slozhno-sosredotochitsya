@@ -1,66 +1,42 @@
+/* Глобальные стили для проекта, их можно дополнять и менять по желанию */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html {
-  block-size: 100%;
-}
-
 body {
   min-inline-size: 375px;
   max-inline-size: 1440px;
   margin: 0 auto;
-  font-family: var(--font-main);
-  font-weight: var(--font-weight-normal);
-  background-color: var(--bg-color);
-  background-image: var(--bg-image);
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  color: var(--text-color);
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-ul, ol {
+ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
+picture {
+  margin: 0;
+  padding: 0;
+}
+
+button,
 a {
-  text-decoration: none;
-  color: inherit;
-  text-shadow: 2px 2px 0 var(--accent-color);
-}
-
-a:hover {
-  border-block-end: 1px solid currentColor;
-}
-
-a:focus-visible {
-  outline: 1px solid currentColor;
-  outline-offset: 2px;
-}
-
-button {
+  color: currentColor;
   font-family: inherit;
   font-size: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
+  line-height: inherit;
 }
-
-img {
-  display: block;
-  max-inline-size: 100%;
-  block-size: auto;
-}
-
-a.title-decor:hover {
-  border-block-end: 1px solid currentColor;
-}
-

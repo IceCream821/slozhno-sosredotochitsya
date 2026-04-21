@@ -1,64 +1,106 @@
-(function () {
-  "use strict";
+const themeButtons = document.querySelectorAll('.header__theme-menu-button');
+let systemThemeListener = null; // для отслеживания изменений системной темы
 
-  const themeButtons = document.querySelectorAll(".header__theme-menu-button");
-  const htmlElement = document.documentElement;
+// Применяет тему на основе системных настроек (для auto)
+function applySystemTheme() {
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const systemTheme = isDark ? 'dark' : 'light';
+  
+  document.body.className = 'page';
+  document.body.classList.add(`theme_${systemTheme}`);
+}
 
-  const updateActiveButton = (activeTheme) => {
-    themeButtons.forEach((button) => {
-      const buttonTheme = button.dataset.theme;
+// Отключает слушатель системной темы, если он активен
+function disableSystemThemeListener() {
+  if (systemThemeListener) {
+    systemThemeListener.removeEventListener('change', systemThemeListener.handler);
+    systemThemeListener = null;
+  }
+}
 
-      if (buttonTheme === activeTheme) {
-        button.classList.add("header__theme-menu-button_active");
-        button.setAttribute("aria-pressed", "true");
-        button.disabled = true;
-      } else {
-        button.classList.remove("header__theme-menu-button_active");
-        button.setAttribute("aria-pressed", "false");
-        button.disabled = false;
-      }
-    });
-  };
-
-  const setTheme = (theme) => {
-    // Удаляем все классы тем
-    htmlElement.classList.remove("theme-dark", "theme-light", "theme-auto");
-
-    if (theme === "dark" || theme === "light") {
-      htmlElement.classList.add(`theme-${theme}`);
-      localStorage.setItem("theme", theme);
-      updateActiveButton(theme);
-    } else if (theme === "auto") {
-      htmlElement.classList.add("theme-auto");
-      localStorage.setItem("theme", "auto");
-      updateActiveButton("auto");
-
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      if (prefersDark) {
-        htmlElement.classList.add("theme-dark");
-      } else {
-        htmlElement.classList.add("theme-light");
-      }
+// Включает слушатель изменений системной темы (только для режима auto)
+function enableSystemThemeListener() {
+  disableSystemThemeListener(); // убираем старый, если есть
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  const handler = (e) => {
+    // Если текущий режим auto (проверяем localStorage), обновляем тему
+    if (localStorage.getItem('theme') === 'auto') {
+      applySystemTheme();
     }
   };
+  
+  mediaQuery.addEventListener('change', handler);
+  systemThemeListener = mediaQuery;
+  systemThemeListener.handler = handler;
+}
 
-  themeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const theme = button.dataset.theme;
-      setTheme(theme);
-    });
-  });
-
-  const initTheme = () => {
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    setTheme(savedTheme);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initTheme);
+// Основная функция смены темы
+function changeTheme(theme) {
+  if (theme === 'auto') {
+    // Удаляем предыдущие классы и применяем системную тему
+    applySystemTheme();
+    localStorage.setItem('theme', 'auto');
+    enableSystemThemeListener(); // начинаем следить за изменениями ОС
   } else {
-    initTheme();
+    // Фиксированная тема (light / dark)
+    disableSystemThemeListener(); // отключаем слежение
+    document.body.className = 'page';
+    document.body.classList.add(`theme_${theme}`);
+    localStorage.setItem('theme', theme);
   }
-})();
+}
+
+// Обработчики кликов по кнопкам
+themeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    themeButtons.forEach((btn) => {
+      btn.classList.remove('header__theme-menu-button_active');
+      btn.removeAttribute('disabled');
+    });
+    
+    let theme;
+    if ([...button.classList].includes('header__theme-menu-button_type_light')) {
+      theme = 'light';
+    } else if ([...button.classList].includes('header__theme-menu-button_type_dark')) {
+      theme = 'dark';
+    } else {
+      theme = 'auto';
+    }
+    
+    changeTheme(theme);
+    
+    button.classList.add('header__theme-menu-button_active');
+    button.setAttribute('disabled', true);
+  });
+});
+
+// Инициализация при загрузке страницы
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  
+  if (savedTheme) {
+    changeTheme(savedTheme);
+    
+    // Активируем соответствующую кнопку
+    themeButtons.forEach((btn) => {
+      btn.classList.remove('header__theme-menu-button_active');
+      btn.removeAttribute('disabled');
+    });
+    const activeButton = document.querySelector(`.header__theme-menu-button_type_${savedTheme}`);
+    if (activeButton) {
+      activeButton.classList.add('header__theme-menu-button_active');
+      activeButton.setAttribute('disabled', true);
+    }
+  } else {
+    // Если тема не сохранена, по умолчанию включаем auto
+    changeTheme('auto');
+    const autoButton = document.querySelector('.header__theme-menu-button_type_auto');
+    if (autoButton) {
+      autoButton.classList.add('header__theme-menu-button_active');
+      autoButton.setAttribute('disabled', true);
+    }
+  }
+}
+
+initTheme();
